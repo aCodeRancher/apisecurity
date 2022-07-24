@@ -47,6 +47,9 @@ public class JdbcCustomerCrudApi {
         JdbcCustomer customerUpdate =customerOptional.get();
 
         customerUpdate.setFullName(request.getFullName());
+        customerUpdate.setBirthDate(request.getBirthDate());
+        customerUpdate.setEmail(request.getEmail());
+        customerUpdate.setGender(request.getGender());
         repository.save(customerUpdate);
      }
 }
