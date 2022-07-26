@@ -1,6 +1,5 @@
 package com.course2.apisecurity.server;
 
-import com.course2.apisecurity.api.request.sqlinjection.JdbcCustomerPatchRequest;
 import com.course2.apisecurity.entity.JdbcCustomer;
 import com.course2.apisecurity.repository.JdbcCustomerCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
