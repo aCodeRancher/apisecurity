@@ -7,14 +7,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.web.util.NestedServletException;
 
 import java.time.LocalDate;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @SpringBootTest
@@ -31,16 +31,14 @@ class JdbcCustomerDangerApiTest {
     void findCustomerByEmailSQL() throws Exception{
         String email = "1' and 1 = 2 union SELECT null, string_agg(table_name, ','), null, null, null FROM information_schema.tables WHERE table_schema='public' AND table_type='BASE TABLE' --";
 
-        MvcResult result = mockMvc.perform(get("/api/sqlinjection/danger/v1/customer/"+ email))
-                .andReturn();
-        String output = result.getResponse().getContentAsString();
-        assertTrue(output.equals("Bad request, SQL injection detected"));
+         mockMvc.perform(get("/api/sqlinjection/danger/v1/customer/"+ email))
+                 .andExpect(jsonPath("$.errorMessage").value("Sorry, some error happened"));
     }
 
     @Test
-     void findCustomersByInvalidGender() throws Exception{
-       assertThrows(NestedServletException.class,
-               ()->mockMvc.perform(get("/api/sqlinjection/danger/v1/customer?genderCode=M;create table")));
+     void findCustomersByInvalidGender() throws Exception {
+               mockMvc.perform(get("/api/sqlinjection/danger/v1/customer?genderCode=M;create table"))
+                       .andExpect(jsonPath("$.errorMessage").value("Sorry, constraint violation happened"));
 
    }
 
@@ -53,11 +51,11 @@ class JdbcCustomerDangerApiTest {
        jdbcCustomer.setEmail("thanos.thanos@gmail.com");
 
        String jsonInput = objectMapper.writeValueAsString(jdbcCustomer);
-       MvcResult result = mockMvc.perform(post("/api/sqlinjection/danger/v1/customer/")
-                       .content(jsonInput))
-                       .andReturn();
-       String output = result.getResponse().getContentAsString();
-       assertTrue(output.equals("Bad request, SQL injection detected"));
+        mockMvc.perform(post("/api/sqlinjection/danger/v1/customer/")
+                       .content(jsonInput)
+                        .contentType(MediaType.APPLICATION_JSON))
+                       .andExpect(jsonPath("$.errorMessage").value("Sorry, input is invalid"));
+
    }
 
    @Test
@@ -66,11 +64,10 @@ class JdbcCustomerDangerApiTest {
                = new JdbcCustomerPatchRequest();
        jdbcCustomerPatchRequest.setNewFullName("Peter Parker; DROP table jdbc_merchant --");
        String jsonInput =  objectMapper.writeValueAsString(jdbcCustomerPatchRequest);
-       MvcResult result = mockMvc.perform(patch("/api/sqlinjection/danger/v1/customer/1")
+       mockMvc.perform(patch("/api/sqlinjection/danger/v1/customer/1")
+                       .contentType(MediaType.APPLICATION_JSON)
                        .content(jsonInput))
-                       .andReturn();
-       String output = result.getResponse().getContentAsString();
-       assertTrue(output.equals("Bad request, SQL injection detected"));
+                       .andExpect(status().isOk());
    }
 
 }
