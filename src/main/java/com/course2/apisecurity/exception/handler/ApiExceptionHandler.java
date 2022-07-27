@@ -21,6 +21,7 @@ public class ApiExceptionHandler {
     private static final ApiErrorMessage  GENERIC_ERROR_MESSAGE = new ApiErrorMessage("Sorry, some error happened");
     private static final ApiErrorMessage  INVALID_ERROR_MESSAGE = new ApiErrorMessage("Sorry, input is invalid");
     private static final ApiErrorMessage  CONSTRAINT_VIOLATION_MESSAGE = new ApiErrorMessage("Sorry, constraint violation happened");
+
     @ExceptionHandler(SQLException.class)
     public ResponseEntity<ApiErrorMessage> handleSQLException(SQLException e){
         LOG.error(e.getMessage());
