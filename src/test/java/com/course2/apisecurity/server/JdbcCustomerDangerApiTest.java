@@ -27,6 +27,10 @@ class JdbcCustomerDangerApiTest {
     @Autowired
     ObjectMapper objectMapper;
 
+    /**
+     * Test email parameter with SQL injection and error will happen
+     * @throws Exception
+     */
     @Test
     void findCustomerByEmailSQL() throws Exception{
         String email = "1' and 1 = 2 union SELECT null, string_agg(table_name, ','), null, null, null FROM information_schema.tables WHERE table_schema='public' AND table_type='BASE TABLE' --";
@@ -35,6 +39,9 @@ class JdbcCustomerDangerApiTest {
                  .andExpect(jsonPath("$.errorMessage").value("Sorry, some error happened"));
     }
 
+    /**
+     * Test invalid gender code and constraint violation will occur.
+     */
     @Test
      void findCustomersByInvalidGender() throws Exception {
                mockMvc.perform(get("/api/sqlinjection/danger/v1/customer?genderCode=M;create table"))
@@ -42,6 +49,11 @@ class JdbcCustomerDangerApiTest {
 
    }
 
+    /**
+     * Create a customer with invalid gender, method argument invalid error will be thrown and handled by
+     * ApiExceptionHandler.
+     * @throws Exception
+     */
    @Test
     void createCustomerWithSQLInj() throws Exception{
        JdbcCustomer jdbcCustomer = new JdbcCustomer();
@@ -58,6 +70,10 @@ class JdbcCustomerDangerApiTest {
 
    }
 
+    /**
+     * Update customer full name with SQL injection. Full name is updated successfully.
+     * @throws Exception
+     */
    @Test
     void updateCustomerWithSQLInj() throws Exception{
        JdbcCustomerPatchRequest jdbcCustomerPatchRequest
