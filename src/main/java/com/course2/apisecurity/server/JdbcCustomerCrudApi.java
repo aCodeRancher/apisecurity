@@ -10,8 +10,8 @@ import javax.validation.constraints.Pattern;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-@RequestMapping("/api/sqlinjection/crud/v1")
+//@RestController
+//@RequestMapping("/api/sqlinjection/crud/v1")
 public class JdbcCustomerCrudApi {
 
     @Autowired
@@ -39,7 +39,7 @@ public class JdbcCustomerCrudApi {
         repository.save(newCustomer);
     }
 
-   @PatchMapping(value = "/customer/{customerId}")
+   /*@PatchMapping(value = "/customer/{customerId}")
      public void updateCustomerFullName(@PathVariable(required = true, name = "customerId") int customerId,
                                        @RequestBody(required = true) JdbcCustomer request) {
         Optional<JdbcCustomer> customerOptional = repository.findById(customerId);
@@ -50,5 +50,5 @@ public class JdbcCustomerCrudApi {
         customerUpdate.setEmail(request.getEmail());
         customerUpdate.setGender(request.getGender());
         repository.save(customerUpdate);
-     }
+     }*/
 }
