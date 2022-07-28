@@ -11,8 +11,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/sqlinjection/safe/v1")
+//@RestController
+//@RequestMapping("/api/sqlinjection/safe/v1")
 @Validated
 public class JdbcCustomerSafeApi {
     @Autowired
