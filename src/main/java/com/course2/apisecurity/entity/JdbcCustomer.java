@@ -11,7 +11,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
-@Entity
+//@Entity
 public class JdbcCustomer {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
