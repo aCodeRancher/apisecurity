@@ -51,7 +51,7 @@ public class JpaCustomerDangerApiTest {
                 .andExpect(status().isOk())
                 .andReturn();
         List<JpaCustomer> customers =
-              objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<List<JpaCustomer>>(){});
+                objectMapper.readValue(result.getResponse().getContentAsString(), new TypeReference<List<JpaCustomer>>(){});
         assertTrue(customers.size()>0);
         customers.stream().forEach( c-> assertTrue(c.getGender().equals("M")));
     }
