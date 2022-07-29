@@ -1,4 +1,4 @@
-package com.course2.apisecurity.server;
+package com.course2.apisecurity.server.sqlinjection;
 
 import com.course2.apisecurity.entity.JpaCustomer;
 import com.course2.apisecurity.repository.JpaCustomerCrudRepository;
