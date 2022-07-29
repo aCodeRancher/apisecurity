@@ -1,20 +1,15 @@
 package com.course2.apisecurity.entity;
 
-//import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
 //@Entity
 public class JdbcCustomer {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+ //   @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int customerId;
 
     private String fullName;
@@ -24,7 +19,7 @@ public class JdbcCustomer {
 
     private LocalDate birthDate;
 
-    @Pattern(regexp = "^[MF]$", message = "Invalid gender")
+   // @Pattern(regexp = "^[MF]$", message = "Invalid gender")
     private String gender;
 
     public int getCustomerId() {
