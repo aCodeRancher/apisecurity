@@ -1,8 +1,8 @@
-package com.course2.apisecurity.server;
+package com.course2.apisecurity.server.sqlinjection;
 
 import com.course2.apisecurity.api.request.sqlinjection.JdbcCustomerPatchRequest;
 import com.course2.apisecurity.entity.JdbcCustomer;
-import com.course2.apisecurity.repository.JdbcCustomerDangerRepository;
+import com.course2.apisecurity.repository.JdbcCustomerSafeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -12,11 +12,11 @@ import javax.validation.constraints.Pattern;
 import java.util.List;
 
 //@RestController
-//@RequestMapping("/api/sqlinjection/danger/v1")
+//@RequestMapping("/api/sqlinjection/safe/v1")
 @Validated
-public class JdbcCustomerDangerApi {
+public class JdbcCustomerSafeApi {
     @Autowired
-    private JdbcCustomerDangerRepository repository;
+    private JdbcCustomerSafeRepository repository;
 
     @GetMapping(value = "/customer/{email}")
     public JdbcCustomer findCustomerByEmail(@PathVariable(required = true, name = "email") String email) {
@@ -26,8 +26,7 @@ public class JdbcCustomerDangerApi {
     @GetMapping(value = "/customer")
     public List<JdbcCustomer> findCustomersByGender(
             @Pattern(regexp = "^[MF]$", message = "Invalid gender") @RequestParam(required = true, name = "genderCode") String genderCode) {
-      return  repository.findCustomersByGender(genderCode);
-
+        return repository.findCustomersByGender(genderCode);
     }
 
     @PostMapping(value = "/customer")
