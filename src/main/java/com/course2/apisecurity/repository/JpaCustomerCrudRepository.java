@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 //@Repository
-public interface JpaCustomerCrudRepository extends CrudRepository<JpaCustomer, Integer> {
+public interface JpaCustomerCrudRepository {//extends CrudRepository<JpaCustomer, Integer> {
 
     List<JpaCustomer> findByEmail(String email);
 

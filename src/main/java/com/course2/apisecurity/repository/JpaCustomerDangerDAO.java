@@ -4,13 +4,13 @@ import com.course2.apisecurity.entity.JpaCustomer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityManager;
+//import javax.persistence.EntityManager;
 import java.util.List;
 
-@Component
+//@Component
 public class JpaCustomerDangerDAO {
 
-   	@Autowired
+   /*	@Autowired
 	private EntityManager entityManager;
 
 	public List<JpaCustomer> findByGender(String gender) {
@@ -19,5 +19,5 @@ public class JpaCustomerDangerDAO {
 		var query = entityManager.createQuery(jpql, JpaCustomer.class);
 
 		return query.getResultList();
-	}
+	}*/
 }
