@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@RestController
-@RequestMapping("/api/sqlinjection/safe/v2")
+//@RestController
+//@RequestMapping("/api/sqlinjection/safe/v2")
 public class JpaCustomerSafeApi {
-
+/*
     @Autowired
 	private JpaCustomerCrudRepository repository;
 
@@ -36,5 +36,5 @@ public class JpaCustomerSafeApi {
 	public List<JpaCustomer> findCustomersByGender(
 			@RequestParam(required = true, name = "genderCode") String genderCode) {
 		return dao.findByGender(genderCode);
-	}
+	}*/
 }
