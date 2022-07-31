@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 import java.io.IOException;
 import java.time.LocalTime;
 
@@ -22,7 +24,7 @@ public class XssSimpleSafeApi {
 
     @GetMapping(value = "/greeting", produces = MediaType.TEXT_PLAIN_VALUE)
     public String greeting(@RequestParam(value = "name", required = true)
-                                   // @Valid @Pattern(regexp = "[A-Za-z]{5,20}")
+                                    @Valid @Pattern(regexp = "[A-Za-z]{5,20}")
                                    String name) {
         var nowHour = LocalTime.now().getHour();
 
