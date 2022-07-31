@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-@Component
+//@Component
 public class XssRequestFilter extends OncePerRequestFilter {
 
     private static final String[] XSS_REGEX = {
