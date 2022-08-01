@@ -23,9 +23,7 @@ public class XssSimpleSafeApi {
     private Tika tika = new Tika();
 
     @GetMapping(value = "/greeting", produces = MediaType.TEXT_PLAIN_VALUE)
-    public String greeting(@RequestParam(value = "name", required = true)
-                                    @Valid @Pattern(regexp = "[A-Za-z]{5,20}")
-                                   String name) {
+    public String greeting(@RequestParam(value = "name", required = true) String name) {
         var nowHour = LocalTime.now().getHour();
 
         var greetString = (nowHour >= 6 && nowHour < 18) ? ("Good morning " + name) : ("Good night " + name);
