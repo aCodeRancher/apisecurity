@@ -14,8 +14,8 @@ import java.io.IOException;
 
 @Component
 public class WhitelistIpFilter extends OncePerRequestFilter {
-    private static final String[] ALLOWED_IP = { "0:0:0:0:0:0:0:1", "10.152.33.216" };
-
+    //private static final String[] ALLOWED_IP = { "0:0:0:0:0:0:0:1", "10.152.33.216" };
+     private static final String[] ALLOWED_IP = {  "10.152.33.216" };
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
