@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@RestController
-@RequestMapping("/api/sqlinjection/safe/v2")
+//@RestController
+//@RequestMapping("/api/sqlinjection/safe/v2")
 public class JpaCustomerSafeApi {
 
     @Autowired
