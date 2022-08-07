@@ -2,19 +2,19 @@ package com.course2.apisecurity.entity;
 
 //import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
+//import javax.persistence.Entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
+//import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 
 //@Entity
 public class JdbcCustomer {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    //@Id
+   // @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int customerId;
 
     private String fullName;
