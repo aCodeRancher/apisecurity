@@ -11,7 +11,7 @@
    <root level="info">
         <appender-ref ref="CONSOLE" />
     </root>
-    <appender name="LOGGLY"
+   <!-- <appender name="LOGGLY"
               class="ch.qos.logback.ext.loggly.LogglyAppender">
         <endpointUrl>https://logs-01.loggly.com/inputs/beb6be35-184b-4eaa-b5a4-381445ab5d34/tag/apisecurity
         </endpointUrl>
@@ -22,6 +22,15 @@
             additivity="false">
         <appender-ref ref="LOGGLY" />
 
-    </logger>
+    </logger> -->
+    <logger name="com.course2" level="debug"
+            additivity="false">
+        <appender-ref ref="CONSOLE" />
+     </logger>
+
+    <root level="warn">
+        <appender-ref ref="CONSOLE" />
+     </root>
+    <logger name="org.springframework.data.elasticsearch.client.WIRE" level="trace"/>
 
 </configuration>
