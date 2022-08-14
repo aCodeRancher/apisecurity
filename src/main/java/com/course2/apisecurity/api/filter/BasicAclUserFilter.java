@@ -21,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-@Configuration
-@Order(0)
+//@Configuration
+//@Order(0)
 public class BasicAclUserFilter extends OncePerRequestFilter {
     @Autowired
     private BasicAuthUserRepository basicAuthUserRepository;
