@@ -14,12 +14,12 @@ public class SessionCookieTokenService {
     public String store(HttpServletRequest request, SessionCookieToken token) {
         var session = request.getSession(true);
 
-        if (session != null) {
+     /*   if (session != null) {
             session.invalidate();
         }
 
         session = request.getSession(true);
-
+      */
         session.setAttribute(SessionCookieConstant.SESSION_ATTRIBUTE_USERNAME,  token.getUsername());
 
         try {
