@@ -1,11 +1,11 @@
 package com.course2.apisecurity.entity;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 
-@Entity
+//@Entity
 public class XssArticle {
-     @Id
-     @GeneratedValue(strategy= GenerationType.AUTO)
+   //  @Id
+   //  @GeneratedValue(strategy= GenerationType.AUTO)
 
     private int articleId;
 
