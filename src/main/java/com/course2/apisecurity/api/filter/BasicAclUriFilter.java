@@ -27,8 +27,8 @@ import java.util.regex.Pattern;
 //Blue181Ocean
 //elsa@apisecurity.com
 //Green529Forest
-@Configuration
-@Order(1)
+//@Configuration
+//@Order(1)
 public class BasicAclUriFilter extends OncePerRequestFilter {
 
     @Autowired
