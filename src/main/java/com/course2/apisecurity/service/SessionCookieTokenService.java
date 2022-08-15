@@ -1,6 +1,7 @@
 package com.course2.apisecurity.service;
 
 import com.course2.apisecurity.constant.SessionCookieConstant;
+import com.course2.apisecurity.util.SecureStringUtil;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
@@ -12,17 +13,16 @@ import com.course2.apisecurity.util.HashUtil;
 @Service
 public class SessionCookieTokenService {
     public String store(HttpServletRequest request, SessionCookieToken token) {
-        var session = request.getSession(true);
+        var session = request.getSession(false);
 
-     /*   if (session != null) {
+       if (session != null) {
             session.invalidate();
         }
 
         session = request.getSession(true);
-      */
-        session.setAttribute(SessionCookieConstant.SESSION_ATTRIBUTE_USERNAME,  token.getUsername());
 
-        try {
+        session.setAttribute(SessionCookieConstant.SESSION_ATTRIBUTE_USERNAME,  token.getUsername());
+       try {
             return HashUtil.sha256(session.getId(), token.getUsername());
         } catch (Exception e) {
             e.printStackTrace();
@@ -30,7 +30,7 @@ public class SessionCookieTokenService {
         }
     }
 
-    public Optional<SessionCookieToken> read(HttpServletRequest request) {
+    public Optional<SessionCookieToken> read(HttpServletRequest request, String tokenId) {
         var session = request.getSession(false);
 
         if (session == null) {
@@ -38,11 +38,19 @@ public class SessionCookieTokenService {
         }
 
         var username = (String) session.getAttribute(SessionCookieConstant.SESSION_ATTRIBUTE_USERNAME);
-
-            var token = new SessionCookieToken();
-            token.setUsername(username);
-
-         return Optional.of(token);
+         try{
+             var computedTokenId = HashUtil.sha256(session.getId(), username);
+             if (!SecureStringUtil.equals(tokenId, computedTokenId)){
+                 return Optional.empty();
+             }
+             var token = new SessionCookieToken();
+             token.setUsername(username);
+             return Optional.of(token);
+         }
+         catch(Exception e){
+             e.printStackTrace();
+             return Optional.empty();
+         }
 
 
     }
