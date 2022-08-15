@@ -13,13 +13,13 @@ import com.course2.apisecurity.util.HashUtil;
 @Service
 public class SessionCookieTokenService {
     public String store(HttpServletRequest request, SessionCookieToken token) {
-        var session = request.getSession(false);
+        var session = request.getSession(true);
 
-       if (session != null) {
-            session.invalidate();
+      if (session != null) {
+           session.invalidate();
         }
 
-        session = request.getSession(true);
+       session = request.getSession(true);
 
         session.setAttribute(SessionCookieConstant.SESSION_ATTRIBUTE_USERNAME,  token.getUsername());
        try {
