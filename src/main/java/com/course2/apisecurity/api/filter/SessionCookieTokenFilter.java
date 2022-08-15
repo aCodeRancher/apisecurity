@@ -32,9 +32,9 @@ public class SessionCookieTokenFilter extends OncePerRequestFilter {
         }
     }
 
-    private boolean isValidSessionCookie(HttpServletRequest request) {
-        //var providedTokenId = request.getHeader("X-CSRF");
-        var token = tokenService.read(request);
+    private boolean isValidSessionCookie(HttpServletRequest request ) {
+         var providedTokenId = request.getHeader("X-CSRF");
+        var token = tokenService.read(request, providedTokenId);
 
         if (token.isPresent()) {
             request.setAttribute(SessionCookieConstant.REQUEST_ATTRIBUTE_USERNAME, token.get().getUsername());
