@@ -31,8 +31,8 @@ public class SessionCookieApi {
 
         var tokenId = tokenService.store(request, token);
 
-      //  return tokenId;
-        return "Logged in";
+        return tokenId;
+
     }
 
     @GetMapping(value = "/time", produces = MediaType.TEXT_PLAIN_VALUE)
