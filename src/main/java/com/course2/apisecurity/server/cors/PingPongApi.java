@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/cors/v1")
-@CrossOrigin(methods = RequestMethod.GET)
+//@CrossOrigin(methods = RequestMethod.GET)
 public class PingPongApi {
 
     @GetMapping(value = "/ping", produces = MediaType.TEXT_PLAIN_VALUE)
