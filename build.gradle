@@ -24,6 +24,7 @@ dependencies {
 	implementation  'com.google.guava:guava:30.1-jre'
 	implementation 'org.bouncycastle:bcprov-jdk15on:1.68'
 	implementation 'org.logback-extensions:logback-ext-loggly:0.1.5'
+	implementation 'io.lettuce:lettuce-core:6.0.2.RELEASE'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
