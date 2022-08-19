@@ -1,6 +1,6 @@
 package com.course2.apisecurity.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.course2.apisecurity.util.HmacUtil;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
@@ -19,6 +19,8 @@ public class RedisTokenService {
     @Autowired
     private ObjectMapper objectMapper;
 
+    private static final String HMAC_SECRET = "theHmacSecretKey";
+
     public String store(RedisToken token) {
         var tokenId = SecureStringUtil.randomString(30);
         String tokenJson;
@@ -26,24 +28,31 @@ public class RedisTokenService {
             tokenJson = objectMapper.writeValueAsString(token);
             redisConnection.sync().set(tokenId, tokenJson);
             redisConnection.sync().expire(tokenId, 15 * 60);
-            return tokenId;
+
+            var hmac = HmacUtil.hmac(tokenId, HMAC_SECRET);
+            return StringUtils.join(tokenId, ".",hmac);
         }
-        catch(JsonProcessingException e){
+        catch(Exception e){
             e.printStackTrace();
             return StringUtils.EMPTY;
         }
     }
 
-    public Optional<RedisToken> read(String tokenId) {
-        var tokenJson = redisConnection.sync().get(tokenId);
-        if (StringUtils.isBlank(tokenJson)) {
-                return Optional.empty();
-            }
+    public Optional<RedisToken> read(String bearerToken) {
+
         try{
-            var token = objectMapper.readValue(tokenJson, RedisToken.class);
-            return Optional.of(token);
+             var tokens = StringUtils.split(bearerToken,".");
+             if (!HmacUtil.isHmacMatch(tokens[0], HMAC_SECRET , tokens[1])){
+                 return Optional.empty();
+             }
+             var tokenJson = redisConnection.sync().get(tokens[0]);
+             if (StringUtils.isBlank(tokenJson)){
+                 return Optional.empty();
+             }
+             var token = objectMapper.readValue(tokenJson, RedisToken.class);
+             return Optional.of(token);
         }
-        catch(JsonProcessingException e){
+        catch(Exception e){
             e.printStackTrace();
             return Optional.empty();
         }
