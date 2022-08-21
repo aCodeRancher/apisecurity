@@ -2,7 +2,7 @@ const apiUrl = 'http://localhost:8080';
 
 function loadTime() {
   let time = document.getElementById('time');
-   let jwtToken = getCookie('jwtToken');
+   let jwtToken = localStorage.getItem('jwtToken');
 
   fetch(apiUrl + '/api/auth/jwt/v1/time', {
       method: 'GET',
