@@ -10,7 +10,6 @@ function processLoginSubmit(e) {
 
   fetch(apiUrl + '/api/auth/jwt/v1/login', {
       method: 'POST',
-      credentials: 'include',
       headers: {
         'Authorization': credential
       }
@@ -18,9 +17,8 @@ function processLoginSubmit(e) {
     .then(res => {
       if (res.ok) {
         res.text().then(text => {
-          document.cookie = 'jwtToken=' + text
-          document.add
-          window.location.replace('/jwtTime.html');
+           localStorage.setItem('jwtToken',text);
+           window.location.replace('/jwtTime.html');
         });
       } else {
         alert('Invalid login');
