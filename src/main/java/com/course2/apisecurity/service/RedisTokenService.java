@@ -10,7 +10,7 @@ import com.course2.apisecurity.util.SecureStringUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.lettuce.core.api.StatefulRedisConnection;
-@Service
+//@Service
 public class RedisTokenService {
 
     @Autowired
