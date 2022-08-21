@@ -9,7 +9,7 @@ import com.course2.apisecurity.api.filter.SessionCookieAuthFilter;
 import com.course2.apisecurity.repository.BasicAuthUserRepository;
 import com.course2.apisecurity.service.SessionCookieTokenService;
 
-@Configuration
+//@Configuration
 public class SessionCookieFilterConfig {
 
     @Autowired
