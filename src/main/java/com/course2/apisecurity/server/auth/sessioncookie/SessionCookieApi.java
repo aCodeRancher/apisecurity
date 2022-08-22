@@ -16,8 +16,8 @@ import com.course2.apisecurity.constant.SessionCookieConstant;
 import com.course2.apisecurity.entity.SessionCookieToken;
 import com.course2.apisecurity.service.SessionCookieTokenService;
 
-@RestController
-@RequestMapping("/api/auth/session-cookie/v1")
+//@RestController
+//@RequestMapping("/api/auth/session-cookie/v1")
 public class SessionCookieApi {
 
     @Autowired
