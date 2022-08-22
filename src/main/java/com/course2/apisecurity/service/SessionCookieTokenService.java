@@ -10,7 +10,7 @@ import com.course2.apisecurity.entity.SessionCookieToken;
 import com.course2.apisecurity.util.HashUtil;
 
 
-@Service
+//@Service
 public class SessionCookieTokenService {
     public String store(HttpServletRequest request, SessionCookieToken token) {
         var session = request.getSession(true);
