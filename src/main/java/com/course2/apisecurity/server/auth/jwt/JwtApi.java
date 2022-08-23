@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalTime;
 
 
-@RestController
-@RequestMapping("/api/auth/jwt/v1")
+//@RestController
+//@RequestMapping("/api/auth/jwt/v1")
 public class JwtApi {
 
     @Autowired
