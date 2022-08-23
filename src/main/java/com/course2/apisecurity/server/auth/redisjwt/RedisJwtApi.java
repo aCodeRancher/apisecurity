@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalTime;
 
-@RestController
-@RequestMapping("/api/auth/redis-jwt/v1")
+//@RestController
+//@RequestMapping("/api/auth/redis-jwt/v1")
 public class RedisJwtApi {
     @Autowired
     private RedisJwtService jwtService;
