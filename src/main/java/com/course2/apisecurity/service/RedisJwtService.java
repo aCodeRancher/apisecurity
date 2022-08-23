@@ -15,7 +15,7 @@ import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.Optional;
 
-@Service
+//@Service
 public class RedisJwtService {
     private static final String HMAC_SECRET = "theHmacSecretKeyForJwt";
 
