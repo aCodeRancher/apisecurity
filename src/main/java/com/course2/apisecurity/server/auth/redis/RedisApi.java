@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalTime;
 
+//This is a test commit
 //@RestController
 //@RequestMapping("/api/auth/redis/v1")
 public class RedisApi {
